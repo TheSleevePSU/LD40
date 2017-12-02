@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class LocomotionController : MonoBehaviour {
 
-	public float speed = 2f;
+	public float maxSpeed = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -23,8 +23,8 @@ public class LocomotionController : MonoBehaviour {
 	private Vector2 CalculateTargetPosition(Vector3 currentPosition, float inputX, float inputY) {
 		float currentX = currentPosition.x;
 		float currentY = currentPosition.y;
-		float targetX = currentX + (inputX * speed * Time.deltaTime);
-		float targetY = currentY + (inputY * speed * Time.deltaTime);
+		float targetX = currentX + (inputX * maxSpeed * Time.deltaTime);
+		float targetY = currentY + (inputY * maxSpeed * Time.deltaTime);
 		return new Vector2(targetX, targetY);
 	}
 }
