@@ -4,40 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class LocomotionController : MonoBehaviour {
 	//public Rigidbody rb = GetComponent<Rigidbody>();
 	public float maxSpeed = 2f;
 
 	Animator anim;
+	Rigidbody2D rb2D;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+		rb2D = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float inputX = Input.GetAxis("Horizontal");
-		float inputY = Input.GetAxis("Vertical");
-		Vector2 targetPosition = CalculateTargetPosition(transform.position, inputX, inputY);
-		transform.position = targetPosition;
+
 	}
 
-	//A tutorial I was using ran all physics throuch a fixed update instead of reg update
-	/*void FixedUpdate(){
-	 * float inputX = Input.GetAxis("Horizontal");
-	 * float inputY = Input.GetAxis("Vertical");
-	 * rb.velocity = new Vector2(inputX * maxSpeed, inputY * maxSpeed);
-	 * 
-	 * anim.SetFloat("speedMoving", Mathf.Abs()
-	 * }
-	*/
-	private Vector2 CalculateTargetPosition(Vector3 currentPosition, float inputX, float inputY) {
-		float currentX = currentPosition.x;
-		float currentY = currentPosition.y;
-		float targetX = currentX + (inputX * maxSpeed * Time.deltaTime);
-		float targetY = currentY + (inputY * maxSpeed * Time.deltaTime);
-		return new Vector2(targetX, targetY);
+	void FixedUpdate() {
+		float inputX = Input.GetAxis("Horizontal");
+		float inputY = Input.GetAxis("Vertical");
+		Vector2 inputDirection = new Vector2(inputX, inputY).normalized;
+		inputDirection *= maxSpeed;
+		rb2D.AddForce(inputDirection);
+		anim.SetFloat("speedMoving", rb2D.velocity.magnitude);
 	}
 }
 
