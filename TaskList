@@ -1,11 +1,7 @@
-Floor, wall
-Colliders
-Player Movement blocked when appropriate
-Enemy basic state machine
-Enemy move towards player
-Enemy movement blocked when appropriate
 Enemy attack
 Attack object collide with player
+block player from walking off tiles
+block enemy from walking off tiles
 Player sound radius - walking
 Enemy sound detection
 Enemy sound threshold trigger state change
