@@ -13,4 +13,8 @@ public class Player : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void HitByAttack() {
+		Debug.Log("Player hit by attack");
+	}
 }

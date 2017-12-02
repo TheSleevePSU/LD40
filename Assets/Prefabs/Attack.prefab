@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4096530657599032}
   - component: {fileID: 212126596861011094}
   - component: {fileID: 58774015369247252}
+  - component: {fileID: 114043255396522350}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -56,6 +57,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &114043255396522350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389658130047818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247d416d8200b4e4daef1b0faf7af830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212126596861011094
 SpriteRenderer:
   m_ObjectHideFlags: 1
