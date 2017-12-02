@@ -1,0 +1,106 @@
+Player
+	Idle
+		Animation
+	Movement
+		Keyboard, axis input
+		Animations
+		Blocked by walls
+		Blocked by enemies
+		Blocked by environmental items
+	Sound-making (self, button)
+		Button input
+		Animation
+		Sound effect
+		Trigger sound meter on enemies within range - proportional to distance
+	Activate object (other)
+		Button input
+		Trigger method on object
+	Generate sound (passive, footsteps)
+		Sound effect
+		Trigger sound meter on enemies
+	Run (make more sound)
+		Button input
+		Trigger sound meter on enemies
+	Health mechanics (either 1 hp or multiple)
+		Detect collision with damaging object
+		Modify health variable
+		Animation
+		Sound effect
+	Death mechanics
+		Animation
+		Sound effect
+		Object destroy/create
+	Interact with environmental hazards
+		Detect collision
+		Trigger behavior
+
+Enemy
+	Idle
+		Animation
+	Movement - wander
+		Wander behavior/AI
+		Animation
+		Blocked by walls
+		Blocked by enemies
+		Blocked by environmental items
+	Pathfind to player
+		Calculate path
+		Move along path
+	Perceive sound - drives up sound meter
+		Render meter
+		Animate meter when value changes
+		Animate when meter hits thresholds
+		Change AI state at thresholds
+	Attack (melee)
+		Detect player
+		Wind up / attack
+		Collision object
+		Animation
+	Interact with environmental hazards
+		Detect collision
+		Trigger behavior
+	\"Turn\" a player
+
+	Health mechanics
+
+	Transform into something else?
+
+	Fire projectile
+		Generate projectile
+		Set projectile direction
+	Create environmental hazards (then avoid them)
+
+Projectile
+	Move
+
+	Collide
+
+Environmental Hazards
+	Proximity mines
+		Trigger
+		Generate explosion
+	Laser trip mines
+		Trigger
+		Generate explosion
+	Confusion trap
+	Bear trap
+
+Level Geometry
+	Floor
+	Wall
+	Exit Point
+
+Bonsuses
+	Pacifist
+	Healer/Savior
+	Murderer
+
+Sound Sources
+	Footsteps
+	Clapping
+	Radio/TV
+	Door open/close
+	Sneeze/Cough due to dust
+	Car alarm
+	Squeaky floor
+
