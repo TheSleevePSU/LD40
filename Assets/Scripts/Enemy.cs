@@ -61,4 +61,8 @@ public class Enemy : MonoBehaviour {
     private void InstantiateAttack(Vector2 attackPosition) {
         Instantiate(attackObject, attackPosition, Quaternion.identity);
     }
+
+	public void HitBySoundCircle() {
+		state = State.hunt;
+	}
 }

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class FootstepGenerator : MonoBehaviour {
 
+	public GameObject soundCircle;
+
 	private float distancePerFootstep = 0.5f;
 	private float distanceTraveledSinceLastFootstep = 0f;
+	public Vector2 soundCircleOffset = new Vector2(0, -0.25f);
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +29,6 @@ public class FootstepGenerator : MonoBehaviour {
 	}
 
 	private void TakeStep() {
-		Debug.Log("Generate footstep sound");
+		Instantiate(soundCircle, transform.position, Quaternion.identity);
 	}
 }
