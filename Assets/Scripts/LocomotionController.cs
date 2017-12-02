@@ -21,7 +21,11 @@ public class LocomotionController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (Input.GetButton("Fire1")) {
+			anim.SetBool("crouch", true);
+		} else {
+			anim.SetBool("crouch", false);
+		}
 	}
 
 	void FixedUpdate() {
