@@ -18,9 +18,9 @@ public class OrientSpriteToMouse : MonoBehaviour {
 	void Update () {
 		Vector3 worldPoint = gameCamera.ScreenToWorldPoint(Input.mousePosition);
 		if (worldPoint.x > transform.position.x) {
-			spriteRenderer.flipX = true;
-		} else {
 			spriteRenderer.flipX = false;
+		} else {
+			spriteRenderer.flipX = true;
 		}
 	}
 }
