@@ -1,5 +1,3 @@
-block player from walking off tiles
-block enemy from walking off tiles
 Player sound radius - walking
 Enemy sound detection
 Enemy sound threshold trigger state change
@@ -11,7 +9,8 @@ Explosion collide with player
 Explosion collide with enemy
 Explosion collide with trap
 Player generate sound manually
-
+block player from walking off tiles
+block enemy from walking off tiles
 
 
 

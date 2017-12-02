@@ -12,15 +12,26 @@ public class LocomotionController : MonoBehaviour {
 
 	Animator anim;
 	Rigidbody2D rb2D;
+	FootstepGenerator footstepGenerator;
+
+	private Vector2 positionThisFrame;
+	private Vector2 positionPreviousFrame;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb2D = GetComponent<Rigidbody2D>();
+		footstepGenerator = GetComponent<FootstepGenerator>();
+		InitializePositionTracking();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		DetectCrouch();
+		footstepGenerator.UpdateDistanceTraveled(DistanceTraveledPreviousFrame());
+	}
+
+	private void DetectCrouch() {
 		if (Input.GetButton("Fire1")) {
 			anim.SetBool("crouch", true);
 		} else {
@@ -35,6 +46,18 @@ public class LocomotionController : MonoBehaviour {
 		inputDirection *= maxSpeed;
 		rb2D.AddForce(inputDirection);
 		anim.SetFloat("speedMoving", rb2D.velocity.magnitude);
+	}
+
+	float DistanceTraveledPreviousFrame() {
+		positionThisFrame = transform.position;
+		Vector2 vectorTraveledPreviousFrame = positionThisFrame - positionPreviousFrame;
+		positionPreviousFrame = positionThisFrame;
+		return vectorTraveledPreviousFrame.magnitude;
+	}
+
+	void InitializePositionTracking() {
+		positionThisFrame = transform.position;
+		positionPreviousFrame = positionThisFrame;
 	}
 }
 

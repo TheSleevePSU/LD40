@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	private enum State { idle, wander, hunt, attack };
-	private State state = State.hunt;
+	private State state = State.idle;
 	private Transform target;
 	public float speed = 1f;
 	public float attackRange = 0.5f;
