@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour {
 	private State state = State.hunt;
 	private Transform target;
 	public float speed = 1f;
+	public float attackRange = 0.5f;
+	public GameObject attackObject;
 
 	// Use this for initialization
 	void Start () {
@@ -26,13 +29,18 @@ public class Enemy : MonoBehaviour {
 				Hunt();
 				break;
 			case State.attack:
+				Attack();
 				break;
 		}
 	}
 
-	private void Hunt() {
+    private void Hunt() {
 		Vector2 vectorToTarget = GetVectorToTarget();
-		MoveAlongVector(vectorToTarget);
+		if (vectorToTarget.magnitude < attackRange) {
+			state = State.attack;
+		} else {
+			MoveAlongVector(vectorToTarget);
+		}
 	}
 
 	private Vector2 GetVectorToTarget() {
@@ -43,4 +51,14 @@ public class Enemy : MonoBehaviour {
 		Vector2 translation = (vector.normalized * speed * Time.deltaTime);
 		transform.Translate(translation);
 	}
+
+    private void Attack() {
+		Vector2 targetPosition = target.position;
+        InstantiateAttack(targetPosition);
+        state = State.idle;
+    }
+
+    private void InstantiateAttack(Vector2 attackPosition) {
+        Instantiate(attackObject, attackPosition, Quaternion.identity);
+    }
 }
