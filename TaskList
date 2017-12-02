@@ -1,4 +1,28 @@
+Floor, wall
+Colliders
+Player Movement blocked when appropriate
+Enemy basic state machine
+Enemy move towards player
+Enemy movement blocked when appropriate
+Enemy attack
+Attack object collide with player
+Player sound radius - walking
+Enemy sound detection
+Enemy sound threshold trigger state change
+Basic Enemy sound meter
+Trap
+Trap trigger
+Trap generate explosion
+Explosion collide with player
+Explosion collide with enemy
+Explosion collide with trap
+Player generate sound manually
+
+
+
+
 Player
+	State Machine
 	Idle
 		Animation
 	Movement
@@ -35,6 +59,7 @@ Player
 		Trigger behavior
 
 Enemy
+	State Machine
 	Idle
 		Animation
 	Movement - wander
