@@ -15,6 +15,10 @@ public class Player : MonoBehaviour {
 	}
 
 	public void HitByAttack() {
-		Debug.Log("Player hit by attack");
+		Debug.Log("Player hit by Attack");
+	}
+
+	public void HitByExplosion() {
+		Debug.Log("Player hit by Explosion");
 	}
 }

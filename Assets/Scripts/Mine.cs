@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundCircle : MonoBehaviour {
+public class Mine : MonoBehaviour {
+
+	public GameObject explosion;
 
 	// Use this for initialization
 	void Start () {
-		Destroy(this.gameObject, 0.25f);
+		
 	}
 	
 	// Update is called once per frame
@@ -17,7 +19,16 @@ public class SoundCircle : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		Enemy enemy = other.gameObject.GetComponent<Enemy>();
 		if (enemy != null) {
-			enemy.SendMessage("HitBySoundCircle", this);
+			Detonate();
 		}
+		Player player = other.gameObject.GetComponent<Player>();
+		if (player != null) {
+			Detonate();
+		}
+	}
+
+	private void Detonate() {
+		Instantiate(explosion, transform.position, Quaternion.identity);
+		Destroy(this.gameObject);
 	}
 }

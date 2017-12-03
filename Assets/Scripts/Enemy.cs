@@ -65,4 +65,8 @@ public class Enemy : MonoBehaviour {
 	public void HitBySoundCircle() {
 		state = State.hunt;
 	}
+
+	public void HitByExplosion() {
+		Destroy(this.gameObject);
+	}
 }

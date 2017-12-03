@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class LocomotionController : MonoBehaviour {
 	//public Rigidbody rb = GetComponent<Rigidbody>();
-	public float maxSpeed = 2f;
+	public float maxSpeed = 3f;
 
 	Animator anim;
 	Rigidbody2D rb2D;

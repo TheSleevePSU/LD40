@@ -1,9 +1,4 @@
 Basic Enemy sound meter
-Trap
-Trap trigger
-Trap generate explosion
-Explosion collide with player
-Explosion collide with enemy
 Explosion collide with trap
 Player generate sound manually
 block player from walking off tiles

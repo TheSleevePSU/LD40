@@ -12,9 +12,9 @@ public class Attack : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
-		Player p = other.gameObject.GetComponent<Player>();
-		if (p != null) {
-			p.SendMessage("HitByAttack", this);
+		Player player = other.gameObject.GetComponent<Player>();
+		if (player != null) {
+			player.SendMessage("HitByAttack", this);
 		}
 	}
 }
