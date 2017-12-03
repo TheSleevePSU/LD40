@@ -81,7 +81,6 @@ Enemy
 
 Projectile
 	Move
-
 	Collide
 
 Environmental Hazards

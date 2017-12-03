@@ -40,15 +40,21 @@ public class Enemy : MonoBehaviour {
 
     private void Hunt() {
 		Vector2 vectorToTarget = GetVectorToTarget();
-		if (vectorToTarget.magnitude < attackRange) {
-			UpdateState(State.attack);
-		} else {
-			MoveAlongVector(vectorToTarget);
+		if (vectorToTarget != null) {
+			if (vectorToTarget.magnitude < attackRange) {
+				UpdateState(State.attack);
+			} else {
+				MoveAlongVector(vectorToTarget);
+			}
 		}
 	}
 
 	private Vector2 GetVectorToTarget() {
-		return (target.position - transform.position);
+		if (target != null) {
+			return (target.position - transform.position);
+		} else {
+			return new Vector2();
+		}
 	}
 
 	private void MoveAlongVector(Vector2 vector) {
@@ -57,9 +63,11 @@ public class Enemy : MonoBehaviour {
 	}
 
     private void Attack() {
-		Vector2 targetPosition = target.position;
-        InstantiateAttack(targetPosition);
-        UpdateState(State.idle);
+		if (target != null) {
+			Vector2 targetPosition = target.position;
+			InstantiateAttack(targetPosition);
+			UpdateState(State.idle);
+		}
     }
 
     private void InstantiateAttack(Vector2 attackPosition) {
