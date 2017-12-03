@@ -13,12 +13,14 @@ public class Enemy : MonoBehaviour {
 	public GameObject attackObject;
 
 	Animator animator;
+	ThoughtBubble thoughtBubble;
 
 	// Use this for initialization
 	void Start () {
 		Player player = FindObjectOfType<Player>();
 		target = (Transform) player.GetComponent(typeof(Transform));
 		animator = GetComponent<Animator>();
+		thoughtBubble = (ThoughtBubble) GetComponentInChildren(typeof(ThoughtBubble));
 		UpdateState(State.idle);
 	}
 	
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour {
 			case State.idle:
 				break;
 			case State.wander:
+				Wander();
 				break;
 			case State.hunt:
 				Hunt();
@@ -66,16 +69,27 @@ public class Enemy : MonoBehaviour {
 		if (target != null) {
 			Vector2 targetPosition = target.position;
 			InstantiateAttack(targetPosition);
-			UpdateState(State.idle);
 		}
+		UpdateState(State.idle);
     }
+
+	private void Wander() {
+		
+	}
 
     private void InstantiateAttack(Vector2 attackPosition) {
         Instantiate(attackObject, attackPosition, Quaternion.identity);
     }
 
 	public void HitBySoundCircle() {
-		UpdateState(State.hunt);
+		switch (state) {
+			case State.idle:
+				UpdateState(State.wander);
+				break;
+			case State.wander:
+				UpdateState(State.hunt);
+				break;
+		}
 	}
 
 	public void HitByExplosion() {
@@ -87,15 +101,19 @@ public class Enemy : MonoBehaviour {
 		switch (newState) {
 			case State.idle:
 				animator.SetBool("isWalking", false);
+				thoughtBubble.UpdateThought(ThoughtBubble.Thought.questionMark);
 				break;
 			case State.wander:
 				animator.SetBool("isWalking", true);
+				thoughtBubble.UpdateThought(ThoughtBubble.Thought.exclamationPoint);
 				break;
 			case State.hunt:
 				animator.SetBool("isWalking", true);
+				thoughtBubble.UpdateThought(ThoughtBubble.Thought.x);
 				break;
 			case State.attack:
 				animator.SetBool("isWalking", false);
+				thoughtBubble.UpdateThought(ThoughtBubble.Thought.x);
 				break;
 		}
 		Debug.Log(state.ToString());
