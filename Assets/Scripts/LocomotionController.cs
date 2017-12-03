@@ -9,6 +9,7 @@ using UnityEngine;
 public class LocomotionController : MonoBehaviour {
 	//public Rigidbody rb = GetComponent<Rigidbody>();
 	public float maxSpeed = 3f;
+	public GameObject manuallyGeneratedSound;
 
 	Animator anim;
 	Rigidbody2D rb2D;
@@ -28,6 +29,7 @@ public class LocomotionController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		DetectCrouch();
+		DetectClap();
 		footstepGenerator.UpdateDistanceTraveled(DistanceTraveledPreviousFrame());
 	}
 
@@ -36,6 +38,12 @@ public class LocomotionController : MonoBehaviour {
 			anim.SetBool("crouch", true);
 		} else {
 			anim.SetBool("crouch", false);
+		}
+	}
+
+	private void DetectClap() {
+		if (Input.GetButtonDown("Fire2")) {
+			Instantiate(manuallyGeneratedSound, transform.position, Quaternion.identity);
 		}
 	}
 
