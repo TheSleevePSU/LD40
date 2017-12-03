@@ -6,16 +6,20 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	private enum State { idle, wander, hunt, attack };
-	private State state = State.idle;
+	private State state;
 	private Transform target;
 	public float speed = 1f;
 	public float attackRange = 0.5f;
 	public GameObject attackObject;
 
+	Animator animator;
+
 	// Use this for initialization
 	void Start () {
 		Player player = FindObjectOfType<Player>();
 		target = (Transform) player.GetComponent(typeof(Transform));
+		animator = GetComponent<Animator>();
+		UpdateState(State.idle);
 	}
 	
 	// Update is called once per frame
@@ -37,7 +41,7 @@ public class Enemy : MonoBehaviour {
     private void Hunt() {
 		Vector2 vectorToTarget = GetVectorToTarget();
 		if (vectorToTarget.magnitude < attackRange) {
-			state = State.attack;
+			UpdateState(State.attack);
 		} else {
 			MoveAlongVector(vectorToTarget);
 		}
@@ -55,7 +59,7 @@ public class Enemy : MonoBehaviour {
     private void Attack() {
 		Vector2 targetPosition = target.position;
         InstantiateAttack(targetPosition);
-        state = State.idle;
+        UpdateState(State.idle);
     }
 
     private void InstantiateAttack(Vector2 attackPosition) {
@@ -63,10 +67,29 @@ public class Enemy : MonoBehaviour {
     }
 
 	public void HitBySoundCircle() {
-		state = State.hunt;
+		UpdateState(State.hunt);
 	}
 
 	public void HitByExplosion() {
 		Destroy(this.gameObject);
+	}
+
+	private void UpdateState(State newState) {
+		state = newState;
+		switch (newState) {
+			case State.idle:
+				animator.SetBool("isWalking", false);
+				break;
+			case State.wander:
+				animator.SetBool("isWalking", true);
+				break;
+			case State.hunt:
+				animator.SetBool("isWalking", true);
+				break;
+			case State.attack:
+				animator.SetBool("isWalking", false);
+				break;
+		}
+		Debug.Log(state.ToString());
 	}
 }
