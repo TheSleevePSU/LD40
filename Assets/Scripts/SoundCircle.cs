@@ -6,7 +6,7 @@ public class SoundCircle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Destroy(this.gameObject, 0.25f);
+		Destroy (gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); 
 	}
 	
 	// Update is called once per frame
